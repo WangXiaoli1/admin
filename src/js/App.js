@@ -3,6 +3,7 @@ import '../css/App.css';
 import $ from 'jquery';
 
 import Home from './Home';
+import '../css/Home.css'
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
@@ -34,7 +35,7 @@ class App extends Component {
               {/*<Breadcrumb.Item>List</Breadcrumb.Item>*/}
               {/*<Breadcrumb.Item>App</Breadcrumb.Item>*/}
             </Breadcrumb>
-            <Layout style={{ padding: '24px 0', background: '#fff' }}>
+            <Layout style={{ padding: '24px 0', background: '#fff' ,float:'left'}}>
               <Sider width={200} style={{ background: '#fff' }}>
                 <Menu
                     mode="inline"
@@ -82,8 +83,8 @@ class App extends Component {
                   </SubMenu>
                 </Menu>
               </Sider>
-              <Content style={{ padding: '0 24px', minHeight: 280 }}>
-               {/*<Home/>*/}
+              <Content style={{ width: '1070px', minHeight: 280,}}>
+               <Home/>
               </Content>
             </Layout>
           </Content>
@@ -94,7 +95,5 @@ class App extends Component {
       </div>
     );
   }
-
 }
-
 export default App;

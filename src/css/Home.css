@@ -1,0 +1,91 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.HomeA{
+    width:1070px;
+    float: right;
+    position: relative;
+}
+/*轮播图片  start*/
+.bannerA{
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+.bannerA li{
+    width:175px;
+    height:30px;
+    text-align: center;
+    line-height:30px;
+    font-size: 16px;
+    float: left;
+    margin-bottom: 20px;
+}
+.bannerA li button{
+    width: 60px;
+    display: inline-block;
+    height:30px;
+    outline: none;
+    font-size: 15px;
+    line-height:30px;
+}
+.bannerA li:nth-of-type(2) img{
+    width:30px;
+    height:30px;
+    border-radius: 50%;
+}
+.updateBox{
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    position: absolute;
+    top:40px;
+    left:75%;
+    display: none;
+    background: #fff;
+}
+.updateBox input{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    outline: none;
+
+}
+/*轮播图片 end*/
+
+/*课程列表  start*/
+.listA{
+    height: auto;
+    overflow: hidden;
+    position: relative;
+}
+.listA li,.courseA li{
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    width: 200px;
+    text-align: center;
+    font-size: 16px;
+    margin-bottom:10px;
+}
+.courseA{
+    height: auto;
+    overflow: hidden;
+}
+.listCourse{
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    position: absolute;
+    left:75%;
+    top:250px;
+    display: none;
+}
+.listCourse input{
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+/*课程列表  end*/
