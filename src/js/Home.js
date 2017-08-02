@@ -33,7 +33,7 @@ class Home extends Component{
                 var id = target.parentNode.parentNode.children[0].innerHTML;
                 $.ajax({
                     type: "post",
-                    url: "http://localhost:8005/banner/delBanner",
+                    url: "http://192.168.43.5:8005/banner/delBanner",
                     data: {"id": id},
                     success: function (e) {
                         this.setState({
@@ -110,7 +110,7 @@ class Home extends Component{
         console.log(fd);
         $.ajax({
             type:"post",
-            url:"http://localhost:8005/banner/banner",
+            url:"http://192.168.43.5:8005/banner/banner",
             async:true,
             data:fd,
             contentType:false,
