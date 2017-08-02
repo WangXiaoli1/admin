@@ -3,17 +3,20 @@
  */
 import React, { Component } from 'react';
 import $ from 'jquery';
-class Home extends Component{
-    constructor(){
+class Home extends Component {
+    constructor() {
         super();
-        this.state={
-            banner:[{"src":"","id":""}],
-            aid:null,
-            main_con:[{"id":"","txt":"","txt1":""}],
-            id:0
-}
+        this.state = {
+            banner: [{"src": "", "id": ""}],
+            aid: null,
+            main_con: [{"id": "", "txt": "", "txt1": ""}],
+            main_con1: [{"id": "", "txt": "", "txt1": ""}],
+            uid: "",
+        }
     }
+
     componentDidMount() {
+
         //上传图片
         $.ajax({
             url: 'http://192.168.43.5:8005/banner/banner',
@@ -49,102 +52,100 @@ class Home extends Component{
                 var id = target.parentNode.parentNode.children[0].innerHTML;
                 // var src = target.parentNode.parentNode.children[1].innerHTML;
                 this.setState({
-                    aid:id
+                    aid: id
                 });
-                    $('.updateBox').css('display', 'block');
+                $('.updateBox').css('display', 'block');
             }
         }.bind(this)
 
 
-
-    //    课程列表文字删除
-
-        $.ajax({
-            url: 'http://192.168.43.5:8005/main',
-            type: 'get',
-            success: function (e) {
-                this.setState({main_con: e});
-            }.bind(this)
-        });
+        //    课程列表文字删除
         // var listC=document.getElementById('listC');
         // listC.onclick= (e)=> {
         //     var ev=e||window.event;
         //     var target = ev.target || ev.srcElement;
-            // if(target.innerHTML=="删除"){
-            //     var id = target.parentElement.parentElement.firstElementChild.innerHTML;
-            //     $.ajax({
-            //         type: "post",
-            //         url: "http://localhost:8005/main/delMain_con",
-            //         data: {"id": id},
-            //         success: function (e) {
-            //             console.log(this);
-            //             this.setState({
-            //                 main_con:e
-            //             })
-            //         }.bind(this),
-            //         error: function () {
-            //             console.log("删除失败")
-            //         }
-            //     });
-            //
-            // }
-    //         if(target.innerHTML=="修改"){
-    //             $('.listCourse').css('display', 'block');
-    //             var id = target.parentNode.parentNode.children[0].innerHTML;
-    //             this.setState({
-    //                 id:id
-    //             })
-    //         }
-    //     };
+        // if(target.innerHTML=="删除"){
+        //     var id = target.parentElement.parentElement.firstElementChild.innerHTML;
+        //     $.ajax({
+        //         type: "post",
+        //         url: "http://localhost:8005/main/delMain_con",
+        //         data: {"id": id},
+        //         success: function (e) {
+        //             console.log(this);
+        //             this.setState({
+        //                 main_con:e
+        //             })
+        //         }.bind(this),
+        //         error: function () {
+        //             console.log("删除失败")
+        //         }
+        //     });
+        //
+        // }
+        //         if(target.innerHTML=="修改"){
+        //             $('.listCourse').css('display', 'block');
+        //             var id = target.parentNode.parentNode.children[0].innerHTML;
+        //             this.setState({
+        //                 id:id
+        //             })
+        //         }
+        //     };
 
-   //     课程列表文字修改
+        //课程列表文字修改
+        $.ajax({
+            url: 'http://192.168.43.5:8005/main',
+            type: 'get',
+            success: function (e) {
+                this.setState({main_con1: e});
+            }.bind(this)
+        });
+    }
 
-   }
-    setFiles=function(element){
+    setFiles = function (element) {
         console.log(element);
-        var files=[];
-        files=element.files[0];
-        var fd=new FormData();  //表单处理数据的方法
-        fd.append('uploadedFile',files)
+        var files = [];
+        files = element.files[0];
+        var fd = new FormData();  //表单处理数据的方法
+        fd.append('uploadedFile', files)
         //用append方法以键值对的方式保存
         console.log(fd);
         $.ajax({
-            type:"post",
-            url:"http://localhost:8005/banner/banner",
-            async:true,
-            data:fd,
-            contentType:false,
-            processData:false,
-            success:function(e){
+            type: "post",
+            url: "http://localhost:8005/banner/banner",
+            async: true,
+            data: fd,
+            contentType: false,
+            processData: false,
+            success: function (e) {
                 alert("上传成功")
             }.bind(this),
-            error:function(){
+            error: function () {
                 alert("上传失败")
             }
         });
     }.bind(this);
 
-    setimg=function(element){
+    setimg = function (element) {
         console.log(element);
-        var files=[];
-        files=element.files[0];
-        var fd=new FormData();  //表单处理数据的方法
-        fd.append('uploadedFile',files)
+        var files = [];
+        files = element.files[0];
+        var fd = new FormData();  //表单处理数据的方法
+        fd.append('uploadedFile', files)
         //用append方法以键值对的方式保存
         console.log(fd);
         $.ajax({
-            type:"post",
-            url:"http://localhost:8005/banner/banimg",
-            async:true,
-            data:fd,
-            contentType:false,
-            processData:false,
-            success:function(e){
+            type: "post",
+            url: "http://localhost:8005/banner/banimg",
+            async: true,
+            data: fd,
+            contentType: false,
+            processData: false,
+            success: function (e) {
 
                 $.ajax({
                     type: "post",
                     url: "http://localhost:8005/banner/upBanner",
-                    data: {"id":this.state.aid},
+                    data: {"id": this.state.aid},
                     success: function (e) {
                         alert(e)
 
@@ -155,15 +156,58 @@ class Home extends Component{
                 });
 
 
-
             }.bind(this),
-            error:function(){
+            error: function () {
                 alert("上传失败")
             }
         });
     }.bind(this);
 
+
+    //课程列表文字修改
+    rev(event) {
+        $(".listCourse").css("display", "block");
+
+        var aa = event.target;
+        var id = aa.parentElement.parentElement.firstElementChild.innerHTML;
+        this.setState({
+            uid: id,
+        })
+    };
+
+
+    confirmfn() {
+
+        var val1 = $(".listCourse input:nth-of-type(1)").val();
+        var val2 = $(".listCourse input:nth-of-type(2)").val();
+
+
+        $(".listCourse").css("display", "none");
+
+        if (val1 == "" || val2 == "") {
+            alert("不能为空")
+        } else {
+            $.ajax({
+                type: "post",
+                url: "http://192.168.43.5:8005/main/upMain_con",
+                data: {
+                    id: this.state.uid,
+                    val1: val1,
+                    val2: val2
+                },
+                success: function (e) {
+                    this.setState({
+                        main_con: e
+                    })
+                }.bind(this),
+                error: function () {
+                    console.log("失败")
+                }
+            });
+        }
+    }
     render(){
+
         return (
             <div className="HomeA">
                 <h3>banner图片</h3>
@@ -196,19 +240,19 @@ class Home extends Component{
                     <li>txt1</li>
                 </ul>
                 <div className="listC" id="listC">
-                    {this.state.main_con.map(function (v,i) {
+                    {this.state.main_con1.map(function(v,i){
                         return <ul key={i} className="courseA">
                             <li>{v.id}</li>
                             <li>{v.txt}</li>
                             <li>{v.txt1}</li>
-                            <li><button>修改</button></li>
+                            <li><button onClick={this.rev.bind(this)}>修改</button></li>
                         </ul>
 
-                    })}
+                    }.bind(this))}
                     <div className="listCourse">
-                        <input type="text" placeholder="txt"/>
-                        <input type="text" placeholder="txt1"/>
-                        <input type="button" value="确定"/>
+                        <input type="text"/>
+                        <input type="text"/>
+                        <button id="confirm" onClick={this.confirmfn.bind(this)}>确定</button>
                     </div>
                 </div>
 
@@ -217,4 +261,4 @@ class Home extends Component{
         )
     }
 }
-export default Home;
+export default Home
