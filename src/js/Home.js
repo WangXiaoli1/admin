@@ -16,7 +16,6 @@ class Home extends Component {
     }
 
     componentDidMount() {
-
         //上传图片
         $.ajax({
             url: 'http://192.168.43.5:8005/banner/banner',
@@ -110,7 +109,6 @@ class Home extends Component {
         //用append方法以键值对的方式保存
         console.log(fd);
         $.ajax({
-
             type:"post",
             url:"http://192.168.43.5:8005/banner/banner",
             async:true,
@@ -118,7 +116,7 @@ class Home extends Component {
             contentType:false,
             processData:false,
             success:function(e){
-                
+
                 alert("上传成功")
             }.bind(this),
             error: function () {
@@ -248,18 +246,15 @@ class Home extends Component {
                             <li>{v.txt}</li>
                             <li>{v.txt1}</li>
                             <li><button onClick={this.rev.bind(this)}>修改</button></li>
+                            <div className="listCourse">
+                                <input type="text"/>
+                                <input type="text"/>
+                                <button id="confirm" onClick={this.confirmfn.bind(this)}>确定</button>
+                            </div>
                         </ul>
-
                     }.bind(this))}
-                    <div className="listCourse">
-                        <input type="text"/>
-                        <input type="text"/>
-                        <button id="confirm" onClick={this.confirmfn.bind(this)}>确定</button>
-                    </div>
                 </div>
-
             </div>
-
         )
     }
 }
