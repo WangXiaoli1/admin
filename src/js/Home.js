@@ -435,6 +435,17 @@ class Home extends Component {
         }
     }
 
+    //品格教育图片修改
+    src1=function(event) {
+        $(".eduCourse").css("display", "block");
+        var dd = event.target;
+        var id = dd.parentElement.parentElement.firstElementChild.innerHTML;
+        console.log(id)
+        this.setState({
+            rid: id,
+        })
+    }.bind(this);
+
 
 
 
@@ -620,22 +631,34 @@ class Home extends Component {
                                     {/*<li><button>删除</button></li>*/}
                                 </ul>
                                 <ul>
-                                    <li><img src={v.src1} alt=""/></li>
+                                    <li>
+                                        <img src={v.src1} alt=""/>
+                                        {/*<button onClick={this.src1}>修改</button>*/}
+                                    </li>
+                                    {/*<div className="src1">*/}
+                                        {/*<input type="file" ref="filcc" onChange={this.setimg2.bind(null,this.refs.filcc)} multiple="multiple"/>*/}
+                                    {/*</div>*/}
                                     {/*<li><button>删除</button></li>*/}
                                 </ul>
                                 <ul>
-                                    <li><img src={v.src2} alt=""/></li>
+                                    <li>
+                                        <img src={v.src2} alt=""/>
+                                        {/*<button>修改</button>*/}
+                                    </li>
                                     {/*<li><button>删除</button></li>*/}
                                 </ul>
                                 <ul>
-                                    <li><img src={v.src4} alt=""/></li>
+                                    <li>
+                                        <img src={v.src4} alt=""/>
+                                        {/*<button>修改</button>*/}
+                                    </li>
                                     {/*<li><button>删除</button></li>*/}
                                 </ul>
                                 <div className="eduCourse">
                                     <input type="text" placeholder="course"/>
                                     <input type="text" placeholder="txt"/>
                                     <input type="text" placeholder="con"/>
-                                    <input type="file" ref="filcc" onChange={this.setimg2.bind(null,this.refs.filcc)} multiple="multiple"/>
+                                    {/*<input type="file" ref="filcc" onChange={this.setimg2.bind(null,this.refs.filcc)} multiple="multiple"/>*/}
                                     <button id="ok2" onClick={this.ok2.bind(this)}>确定</button>
                                 </div>
                             </div>
