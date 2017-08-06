@@ -1,5 +1,16 @@
 .BabyWrap{
     width: 100%;
     height: 400px;
-    background: red;
+}
+.babyBanner{
+    width: 200px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+.babyBanner li{
+    font-size: 15px;
+}
+.upBanner{
+    display: none;
 }

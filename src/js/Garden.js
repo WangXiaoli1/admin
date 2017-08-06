@@ -1,10 +1,6 @@
-/**
- * Created by Administrator on 2017/8/2.
- */
+
 import React,{Component} from 'react';
 import $ from 'jquery';
-
-
 
 class Garden extends Component{
 constructor() {
@@ -155,7 +151,6 @@ componentDidMount() {
     });
     var pictureBWrap= document.getElementById('pictureBWrap');
     pictureBWrap.onclick = function (e) {
-
         var ev = e || window.event;
         var target = ev.target || ev.srcElement;
         if (target.innerHTML == "修改") {
@@ -231,7 +226,7 @@ render() {
             {/*栏目完*/}
             {/*banner*/}
             <div id="bannerBWrap">
-                {this.state.picture.map(function (v, i) {
+                {this.state.banner.map(function (v, i) {
                     return <ul key={i} className="bannerB">
                         <li>{v.id}</li>
                         <li><img src={v.src}/></li>

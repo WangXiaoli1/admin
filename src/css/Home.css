@@ -101,8 +101,8 @@
 }
 .specialA li{
     font-size: 16px;
-    height: 30px;
-    line-height: 30px;
+    height:30px;
+    line-height:30px;
     width: 200px;
     text-align: center;
     padding-bottom: 10px;
@@ -128,11 +128,11 @@
     overflow: hidden;
     font-size: 16px;
 }
-.specialB ul:last-of-type li:nth-of-type(1):hover{
-    width: 540px;
-    height: auto;
-    float: left;
-}
+/*.specialB ul:last-of-type li:nth-of-type(1):hover{*/
+    /*width: 540px;*/
+    /*height: auto;*/
+    /*float: left;*/
+/*}*/
 .specialCourse{
     width: 200px;
     height: 200px;
@@ -177,7 +177,7 @@
 /*品格教育 start*/
 .eduCourse{
     width: 200px;
-    height: 270px;
+    height:200px;
     position:absolute;
     left: 75%;
     top: 830px;
@@ -185,13 +185,21 @@
     display: none;
 
 }
-
-/*.specialBIn ul:nth-of-type(5) li button,.specialBIn ul:nth-of-type(6) li button,.specialBIn ul:nth-of-type(7) li button{*/
-    /*margin-left: 50px;*/
-/*}*/
-/*.src1{*/
-    /*width: 200px;*/
-    /*height: 100px;*/
-    /*position: absolute;*/
-/*}*/
+.src1,.src2,.src4,.school_src1,.school_src2{
+    display: none;
+}
 /*品格教育 end*/
+/*学校环境 start*/
+.schoolB{
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    position: absolute;
+    left: 75%;
+    top: 1100px;
+    display: none;
+}
+.schoolB input{
+    margin: 10px;
+}
+/*学校环境 end*/
