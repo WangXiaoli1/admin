@@ -23,10 +23,15 @@ class Garden extends Component{
             xid:"",
         //    小黄人图片
             xhrGreen:[{"id":"","src":""}],
+            xhrGreen1:[{"id":"","src":""}],
             xhrid:"",
         //    照片墙左侧
             pictureCLeft:[{"id":"","src":""}],
-            lid:""
+            pictureCLeft1:[{"id":"","src":""}],
+            lid:"",
+            pictureCRight:[{"id":"","src":""}],
+            pictureCRight1:[{"id":"","src":""}],
+            rid:""
         }
     }
 // banner修改图片
@@ -127,15 +132,24 @@ class Garden extends Component{
             type:'get',
             success:function(a){
                 console.log(a);
-                this.setState({xhrGreen:a});
+                this.setState({xhrGreen1:a});
             }.bind(this)
         });
-    //    照片墙图片调取
+    //    照片墙左侧图片调取
         $.ajax({
             type: "get",
             url: "http://192.168.43.5:8005/edu_pic/edu_pic",
             success: function (e) {
-                this.setState({pictureCLeft:e});
+                this.setState({pictureCLeft1:e});
+
+            }.bind(this)
+        });
+    //    照片墙右侧图片调取
+        $.ajax({
+            type: "get",
+            url: "http://192.168.43.5:8005/edu_pic1/edu_pic1",
+            success: function (e) {
+                this.setState({pictureCRight1:e});
 
             }.bind(this)
         });
@@ -285,10 +299,13 @@ class Garden extends Component{
     }
 
     //小黄人图片修改
-    xhrA(){
-        $(".xhrImg li input").css("display","block");
-
-    }
+    xhrA=function(event){
+        $(".xhrD").css("display","block");
+        var id=event.target.parentElement.parentElement.firstElementChild.innerHTML;
+        this.setState({
+            xhrid:id
+        })
+    }.bind(this);
     setimg3 = function (element) {
         console.log(element);
         var files = [];
@@ -324,7 +341,93 @@ class Garden extends Component{
         });
     }.bind(this);
 
-    //照片墙图片修改
+    //照片墙左侧图片修改
+
+    pictureCLeft=function(event){
+        $(".pictureD").css("display","block");
+        var id=event.target.parentElement.parentElement.firstElementChild.innerHTML;
+        this.setState({
+            lid:id
+        })
+    }.bind(this);
+    setimg4 = function (element) {
+        console.log(element);
+        var files = [];
+        files = element.files[0];
+        var fd = new FormData();  //表单处理数据的方法
+        fd.append('uploadedFile', files)
+        //用append方法以键值对的方式保存
+        console.log(fd);
+        $.ajax({
+            type: "post",
+            url: "http://localhost:8005/edu_pic/pic_img",
+            async: true,
+            data: fd,
+            contentType: false,
+            processData: false,
+            success: function (e) {
+                $.ajax({
+                    type: "post",
+                    url: "http://localhost:8005/edu_pic/eduPic",
+                    data: {"id": this.state.lid},
+                    success: function (e) {
+                        alert(e)
+
+                    }.bind(this),
+                    error: function () {
+                        console.log("修改失败")
+                    }
+                });
+            }.bind(this),
+            error: function () {
+                alert("上传失败")
+            }
+        });
+    }.bind(this);
+
+    //照片墙右侧图片修改
+    pictureCRight=function(event){
+        $(".picRd").css("display","block");
+        var id=event.target.parentElement.parentElement.firstElementChild.innerHTML;
+        this.setState({
+            rid:id
+        })
+    }.bind(this);
+    setimg5 = function (element) {
+        console.log(element);
+        var files = [];
+        files = element.files[0];
+        var fd = new FormData();  //表单处理数据的方法
+        fd.append('uploadedFile', files)
+        //用append方法以键值对的方式保存
+        console.log(fd);
+        $.ajax({
+            type: "post",
+            url: "http://localhost:8005/edu_pic1/picr_img",
+            async: true,
+            data: fd,
+            contentType: false,
+            processData: false,
+            success: function (e) {
+                $.ajax({
+                    type: "post",
+                    url: "http://localhost:8005/edu_pic1/eduRPic",
+                    data: {"id": this.state.rid},
+                    success: function (e) {
+                        alert(e)
+
+                    }.bind(this),
+                    error: function () {
+                        console.log("修改失败")
+                    }
+                });
+            }.bind(this),
+            error: function () {
+                alert("上传失败")
+            }
+        });
+    }.bind(this);
+
 
 
 
@@ -440,33 +543,58 @@ class Garden extends Component{
                         <li>id</li>
                         <li>img</li>
                     </ul>
-                    {this.state.xhrGreen.map((v,i)=>{
+                    {this.state.xhrGreen1.map((v,i)=>{
                         return <ul className="xhrImg">
                             <li>{v.id}</li>
                             <li><img src={v.src} alt=""/></li>
                             <li><button onClick={this.xhrA}>修改</button></li>
-                            <li><input type="file" ref="file_xhr" onChange={this.setimg3.bind(null, this.refs.file_xhr)}/>
-                            </li>
                         </ul>
-
                     })}
+                    <div  className="xhrD">
+                        <input type="file" ref="file_pic" onChange={this.setimg4.bind(null,this.refs.file_pic)}/>
+                    </div>
                 </div>
                 {/*特色教学 小黄人 end*/}
                 {/*照片墙左侧 start*/}
-                <div className="xhrA">
+                <div className="pictureA">
                     <h3>照片墙左侧图片</h3>
-                    <ul>
+                    <ul className="pictureB">
                         <li>id</li>
                         <li>img</li>
                     </ul>
-                    <div className="pictureC-left" id="pictureCLeft">
-                        {this.state.pictureCLeft.map(function (v,i) {
-                                return <div key={i}><img src={v.src} alt=""/></div>
-                            }
-                        )}
+                    {this.state.pictureCLeft1.map(function (v, i) {
+                        return <ul key={i} className="pictureCLeft">
+                            <li>{v.id}</li>
+                            <li><img src={v.src}/></li>
+                            <li><button onClick={this.pictureCLeft}>修改</button></li>
+                        </ul>
+                    }.bind(this))}
+                    <div  className="pictureD">
+                        <input type="file" ref="file_pic" onChange={this.setimg4.bind(null, this.refs.file_pic)}/>
+                    </div>
+                   </div>
+                {/*照片墙左侧 end*/}
+
+
+                {/*照片墙右侧 start*/}
+                <div className="picRa">
+                    <h3>照片墙右侧图片</h3>
+                    <ul className="picRb">
+                        <li>id</li>
+                        <li>img</li>
+                    </ul>
+                    {this.state.pictureCRight1.map(function (v, i) {
+                        return <ul key={i} className="pictureCRight">
+                            <li>{v.id}</li>
+                            <li><img src={v.src}/></li>
+                            <li><button onClick={this.pictureCRight}>修改</button></li>
+                        </ul>
+                    }.bind(this))}
+                    <div  className="picRd">
+                        <input type="file" ref="file_picR" onChange={this.setimg5.bind(null, this.refs.file_picR)}/>
                     </div>
                 </div>
-                {/*照片墙左侧 end*/}
+                {/*照片墙右侧 end*/}
             </div>
         )
     }
