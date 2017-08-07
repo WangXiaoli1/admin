@@ -25,6 +25,11 @@ class Home extends Component {
             main_side_r:[{"id":"","course":"","txt":"","con":"","src1":"","src2":"","src4":""}],
             main_side_r1:[{"id":"","course":"","txt":"","con":"","src1":"","src2":"","src4":""}],
             rid:"",
+        //    学校环境
+            main_school:[{"id":"","title":"","txt":"","con":"","src1":"","src2":""}],
+            main_school1:[{"id":"","title":"","txt":"","con":"","src1":"","src2":""}],
+            uid:""
+
 
         }
     }
@@ -138,8 +143,15 @@ class Home extends Component {
             success: function (e) {
                 this.setState({main_side_r1: e});
             }.bind(this)
-        })
-
+        });
+    //    学校环境文字调取
+        $.ajax({
+            url: "http://192.168.43.5:8005/main_school/school",
+            type: 'get',
+            success: function (e) {
+                this.setState({main_school1: e});
+            }.bind(this)
+        });
     }
 
 
@@ -260,7 +272,75 @@ class Home extends Component {
             success: function (e) {
                 $.ajax({
                     type: "post",
-                    url: "http://localhost:8005/side_r/upMain_side_r",
+                    url: "http://localhost:8005/side_r/upSrc1",
+                    data: {"id": this.state.rid},
+                    success: function (e) {
+                        alert(e)
+
+                    }.bind(this),
+                    error: function () {
+                        console.log("修改失败")
+                    }
+                });
+            }.bind(this),
+            error: function () {
+                alert("上传失败")
+            }
+        });
+    }.bind(this);
+    setimg3 = function (element) {
+        console.log(element);
+        var files = [];
+        files = element.files[0];
+        var fd = new FormData();  //表单处理数据的方法
+        fd.append('uploadedFile', files)
+        //用append方法以键值对的方式保存
+        console.log(fd);
+        $.ajax({
+            type: "post",
+            url: "http://localhost:8005/side_r/side_r_img",
+            async: true,
+            data: fd,
+            contentType: false,
+            processData: false,
+            success: function (e) {
+                $.ajax({
+                    type: "post",
+                    url: "http://localhost:8005/side_r/upSrc2",
+                    data: {"id": this.state.rid},
+                    success: function (e) {
+                        alert(e)
+
+                    }.bind(this),
+                    error: function () {
+                        console.log("修改失败")
+                    }
+                });
+            }.bind(this),
+            error: function () {
+                alert("上传失败")
+            }
+        });
+    }.bind(this);
+    setimg4 = function (element) {
+        console.log(element);
+        var files = [];
+        files = element.files[0];
+        var fd = new FormData();  //表单处理数据的方法
+        fd.append('uploadedFile', files)
+        //用append方法以键值对的方式保存
+        console.log(fd);
+        $.ajax({
+            type: "post",
+            url: "http://localhost:8005/side_r/side_r_img",
+            async: true,
+            data: fd,
+            contentType: false,
+            processData: false,
+            success: function (e) {
+                $.ajax({
+                    type: "post",
+                    url: "http://localhost:8005/side_r/upSrc4",
                     data: {"id": this.state.rid},
                     success: function (e) {
                         alert(e)
@@ -277,6 +357,75 @@ class Home extends Component {
         });
     }.bind(this);
 
+    //学校环境图片修改
+    setimg5 = function (element) {
+        console.log(element);
+        var files = [];
+        files = element.files[0];
+        var fd = new FormData();  //表单处理数据的方法
+        fd.append('uploadedFile', files);
+        //用append方法以键值对的方式保存
+        console.log(fd);
+        $.ajax({
+            type: "post",
+            url: "http://localhost:8005/main_school/main_school_img",
+            async: true,
+            data: fd,
+            contentType: false,
+            processData: false,
+            success: function (e) {
+                $.ajax({
+                    type: "post",
+                    url: "http://localhost:8005/main_school/upSchool1",
+                    data: {"id": this.state.schid},
+                    success: function (e) {
+                        alert(e)
+
+                    }.bind(this),
+                    error: function () {
+                        console.log("修改失败")
+                    }
+                });
+            }.bind(this),
+            error: function () {
+                alert("上传失败")
+            }
+        });
+    }.bind(this);
+    setimg6 = function (element) {
+        console.log(element);
+        var files = [];
+        files = element.files[0];
+        var fd = new FormData();  //表单处理数据的方法
+        fd.append('uploadedFile', files);
+        //用append方法以键值对的方式保存
+        console.log(fd);
+        $.ajax({
+            type: "post",
+            url: "http://localhost:8005/main_school/main_school_img",
+            async: true,
+            data: fd,
+            contentType: false,
+            processData: false,
+            success: function (e) {
+                $.ajax({
+                    type: "post",
+                    url: "http://localhost:8005/main_school/upSchool2",
+                    data: {"id": this.state.schid},
+                    success: function (e) {
+                        alert(e)
+
+                    }.bind(this),
+                    error: function () {
+                        console.log("修改失败")
+                    }
+                });
+            }.bind(this),
+            error: function () {
+                alert("上传失败")
+            }
+        });
+    }.bind(this);
 
     //课程列表文字修改
     rev(event) {
@@ -287,8 +436,6 @@ class Home extends Component {
             uid: id,
         })
     };
-
-
     confirmfn() {
         var val1 = $(".listCourse input:nth-of-type(1)").val();
         var val2 = $(".listCourse input:nth-of-type(2)").val();
@@ -435,6 +582,103 @@ class Home extends Component {
         }
     }
 
+    //品格教育图片修改
+    src1=function(event) {
+        $(".src1").css("display", "block");
+        var dd = event.target;
+        var id = dd.parentElement.parentElement.firstElementChild.innerHTML;
+        console.log(id)
+        this.setState({
+            rid: id,
+        })
+    }.bind(this);
+    src2=function(event) {
+        $(".src2").css("display", "block");
+        var dd = event.target;
+        var id = dd.parentElement.parentElement.firstElementChild.innerHTML;
+        console.log(id)
+        this.setState({
+            rid: id,
+        })
+    }.bind(this);
+    src4=function(event) {
+        $(".src4").css("display", "block");
+        var dd = event.target;
+        var id = dd.parentElement.parentElement.firstElementChild.innerHTML;
+        console.log(id)
+        this.setState({
+            rid: id,
+        })
+    }.bind(this);
+
+    //学校环境文字修改
+
+    schoolA=function(event) {
+        $(".schoolB").css("display", "block");
+        var ee = event.target;
+        var id = ee.parentElement.parentElement.firstElementChild.innerHTML;
+        console.log(id);
+        this.setState({
+            uid: id,
+        })
+    }.bind(this);
+
+    ok3(){
+
+        var title = $(".schoolB input:nth-of-type(1)").val();
+        var txt = $(".schoolB input:nth-of-type(2)").val();
+        var con = $(".schoolB input:nth-of-type(3)").val();
+        var intro = $(".schoolB input:nth-of-type(4)").val();
+
+
+        $(".schoolB").css("display", "none");
+        if (title == "" || txt == ""||con==""||intro=="") {
+            alert("不能为空")
+        } else {
+            $.ajax({
+                type: "post",
+                url: "http://192.168.43.5:8005/school/upSchool",
+                data: {
+                    id: this.state.schid,
+                    title:title,
+                    txt:txt,
+                    con:con,
+                    intro:intro
+
+                },
+                success: function (e) {
+                    this.setState({
+                        main_school: e
+                    })
+                }.bind(this),
+                error: function () {
+                    console.log("失败")
+                }
+            });
+        }
+    }
+    //学校环境图片修改
+    school_src1=function(event) {
+        $(".school_src1").css("display", "block");
+        var ee = event.target;
+        var id = ee.parentElement.parentElement.firstElementChild.innerHTML;
+        console.log(id)
+        this.setState({
+            schid: id,
+        })
+    }.bind(this);
+    school_src2=function(event) {
+        $(".school_src2").css("display", "block");
+        var ee = event.target;
+        var id = ee.parentElement.parentElement.firstElementChild.innerHTML;
+        console.log(id)
+        this.setState({
+            schid: id,
+        })
+    }.bind(this);
+
+
+
 
 
 
@@ -557,19 +801,15 @@ class Home extends Component {
                                 </ul>
                                 <ul>
                                     <li>{v.course}</li>
-                                    {/*<li><button>删除</button></li>*/}
                                 </ul>
                                 <ul>
                                     <li>{v.txt}</li>
-                                    {/*<li><button>删除</button></li>*/}
                                 </ul>
                                 <ul>
                                     <li>{v.con}</li>
-                                    {/*<li><button>删除</button></li>*/}
                                 </ul>
                                 <ul>
                                     <li><img src={v.src2} alt=""/></li>
-                                    {/*<li><button>删除</button></li>*/}
                                 </ul>
                                 <div className="caihuiCourse">
                                     <input type="text" placeholder="course"/>
@@ -579,8 +819,6 @@ class Home extends Component {
                                     <button id="ok1" onClick={this.ok1.bind(this)}>确定</button>
                                 </div>
                             </div>
-
-
                         })
 
                         }
@@ -588,7 +826,6 @@ class Home extends Component {
                 </div>
                 {/*彩绘课程  end*/}
                 {/*品格教育 start*/}
-
                 <h3>品格教育</h3>
                 <div className="caihui">
                     <ul className="specialA">
@@ -609,33 +846,51 @@ class Home extends Component {
                                 </ul>
                                 <ul>
                                     <li>{v.course}</li>
-                                    {/*<li><button>删除</button></li>*/}
                                 </ul>
                                 <ul>
                                     <li>{v.txt}</li>
-                                    {/*<li><button>删除</button></li>*/}
                                 </ul>
                                 <ul>
                                     <li>{v.con}</li>
-                                    {/*<li><button>删除</button></li>*/}
                                 </ul>
                                 <ul>
-                                    <li><img src={v.src1} alt=""/></li>
-                                    {/*<li><button>删除</button></li>*/}
+                                    <li>
+                                        <img src={v.src1} alt=""/>
+                                    </li>
+                                    <li><button onClick={this.src1}>修改</button></li>
+                                    <li>
+                                        <div className="src1">
+                                            <input type="file" ref="filcc" onChange={this.setimg2.bind(null,this.refs.filcc)} multiple="multiple"/>
+                                        </div>
+                                    </li>
                                 </ul>
                                 <ul>
-                                    <li><img src={v.src2} alt=""/></li>
-                                    {/*<li><button>删除</button></li>*/}
+                                    <li>
+                                        <img src={v.src2} alt=""/>
+                                    </li>
+                                    <li><button onClick={this.src2}>修改</button></li>
+                                    <li>
+                                        <div className="src2">
+                                            <input type="file" ref="fildd" onChange={this.setimg3.bind(null,this.refs.fildd)} multiple="multiple"/>
+                                        </div>
+                                    </li>
                                 </ul>
                                 <ul>
-                                    <li><img src={v.src4} alt=""/></li>
-                                    {/*<li><button>删除</button></li>*/}
+                                    <li>
+                                        <img src={v.src4} alt=""/>
+                                    </li>
+                                    <li><button onClick={this.src4}>修改</button></li>
+                                    <li>
+                                        <div className="src4">
+                                            <input type="file" ref="filee" onChange={this.setimg4.bind(null,this.refs.filee)} multiple="multiple"/>
+                                        </div>
+                                    </li>
                                 </ul>
                                 <div className="eduCourse">
                                     <input type="text" placeholder="course"/>
                                     <input type="text" placeholder="txt"/>
                                     <input type="text" placeholder="con"/>
-                                    <input type="file" ref="filcc" onChange={this.setimg2.bind(null,this.refs.filcc)} multiple="multiple"/>
+                                    {/*<input type="file" ref="filcc" onChange={this.setimg2.bind(null,this.refs.filcc)} multiple="multiple"/>*/}
                                     <button id="ok2" onClick={this.ok2.bind(this)}>确定</button>
                                 </div>
                             </div>
@@ -646,8 +901,77 @@ class Home extends Component {
                         }
                     </div>
                 </div>
-
                 {/*品格教育  end*/}
+                {/*学校环境 start*/}
+                <h3>学校环境</h3>
+                <div className="caihui">
+                    <ul className="specialA">
+                        <li>id</li>
+                        <li>title</li>
+                        <li>txt</li>
+                        <li>con</li>
+                        <li>intro</li>
+                        <li>src1</li>
+                        <li>src2</li>
+                    </ul>
+                    <div className="specialB">
+                        {this.state.main_school1.map((v,i)=> {
+                            return <div className="specialBIn"  key={i}>
+                                <ul>
+                                    <li>{v.id}</li>
+                                    <li><button onClick={this.schoolA}>修改</button></li>
+                                </ul>
+                                <ul>
+                                    <li>{v.title}</li>
+                                </ul>
+                                <ul>
+                                    <li>{v.txt}</li>
+                                </ul>
+                                <ul>
+                                    <li>{v.con}</li>
+                                </ul>
+                                <ul>
+                                    <li>{v.intro}</li>
+                                </ul>
+                                <ul>
+                                    <li>
+                                        <img src={v.src1} alt=""/>
+                                    </li>
+                                    <li><button onClick={this.school_src1}>修改</button></li>
+                                    <li>
+                                        <div className="school_src1">
+                                            <input type="file" ref="fileSchool1" onChange={this.setimg5.bind(null,this.refs.fileSchool1)} multiple="multiple"/>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li>
+                                        <img src={v.src2} alt=""/>
+                                    </li>
+                                    <li><button onClick={this.school_src2}>修改</button></li>
+                                    <li>
+                                        <div className="school_src2">
+                                            <input type="file" ref="fileSchool2" onChange={this.setimg6.bind(null,this.refs.fileSchool2)} multiple="multiple"/>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div className="schoolB">
+                                    <input type="text" placeholder="title"/>
+                                    <input type="text" placeholder="txt"/>
+                                    <input type="text" placeholder="con"/>
+                                    <input type="text" placeholder="intro"/>
+                                    {/*<input type="file" ref="filcc" onChange={this.setimg2.bind(null,this.refs.filcc)} multiple="multiple"/>*/}
+                                    <button id="ok3" onClick={this.ok3.bind(this)}>确定</button>
+                                </div>
+                            </div>
+
+
+                        })
+
+                        }
+                    </div>
+                </div>
+                {/*学校环境  end*/}
             </div>
         )
     }

@@ -1,10 +1,6 @@
-/**
- * Created by Administrator on 2017/8/2.
- */
+
 import React,{Component} from 'react';
 import $ from 'jquery';
-
-
 
 class Garden extends Component{
 constructor() {
@@ -116,6 +112,7 @@ componentDidMount() {
         }.bind(this)
     });
 
+
     // 介绍
     $.ajax({
         url:'http://192.168.43.5:8005/conB_introduce',
@@ -127,6 +124,21 @@ componentDidMount() {
     });
 
     // 介绍完
+
+    // var pictureBWrap= document.getElementById('pictureBWrap');
+    // pictureBWrap.onclick = function (e) {
+    //     var ev = e || window.event;
+    //     var target = ev.target || ev.srcElement;
+    //     if (target.innerHTML == "修改") {
+    //         var id = target.parentNode.parentNode.children[0].innerHTML;
+    //         this.setState({
+    //             pid: id
+    //         });
+    //         $('.updateBox1').css('display', 'block');
+    //     }
+    // }.bind(this);
+    //上传图片完
+    // 照片墙完
 }
 
 
