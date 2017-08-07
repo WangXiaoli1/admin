@@ -148,7 +148,68 @@
     height: 30px;
     line-height: 30px;
 }
-.xhrImg li input{
+.xhrD{
+    position: absolute;
+    top: 1070px;
+    left: 65%;
     display: none;
 }
 /*小黄人 end*/
+/*照片墙左侧 start*/
+.pictureA{
+    width: 100%;
+    height:300px;
+    position: relative;
+}
+.pictureB,.pictureCLeft{
+    overflow: hidden;
+}
+.pictureB li,.pictureCLeft li{
+    width: 200px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    float: left;
+    font-size: 15px;
+}
+.pictureB li img ,.pictureCLeft li img{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+.pictureD{
+    position: absolute;
+    left:60%;
+    top:80px;
+    display: none;
+}
+/*照片墙左侧 end*/
+/*照片墙右侧 start*/
+.picRa{
+    width: 100%;
+    height:300px;
+    position: relative;
+}
+.picRb,.pictureCRight{
+    overflow: hidden;
+}
+.picRb li,.pictureCRight li{
+    width: 200px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    float: left;
+    font-size: 15px;
+}
+.picRb li img ,.pictureCRight li img{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+.picRd{
+    position: absolute;
+    left:60%;
+    top:70px;
+    display: none;
+}
+/*照片墙右侧 end*/

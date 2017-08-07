@@ -49,7 +49,7 @@ class Garden extends Component{
     }.bind(this);
 // banner修改图片完
     componentDidMount() {
-        // banner
+        // banner图片修改 start
         $.ajax({
             url: 'http://192.168.43.5:8005/banner5/banner5',
             type: 'get',
@@ -73,31 +73,34 @@ class Garden extends Component{
         }.bind(this);
         //上传图片完
         var babyBanner= document.getElementById('babyBanner');
+    //    banner图片修改  end
     }
     render() {
         return (
             <div className="gardenWrap">
                 {/*栏目*/}
-                <h3>banner图片</h3>
-                <ul className="bannerB">
-                    <li>id</li>
-                    <li>img</li>
-                </ul>
-                {/*栏目完*/}
-                {/*banner*/}
-                <div id="bannerBWrap">
-                    {this.state.banner.map(function (v, i) {
-                        return <ul key={i} className="bannerB">
-                            <li>{v.id}</li>
-                            <li><img src={v.src}/></li>
-                            <li>
-                                <button id="babyBanner">修改</button>
-                            </li>
-                            <div className="upBanner">
-                                <input type="file" ref="filaa1" onChange={this.setimg.bind(null, this.refs.filaa1)}/>
-                            </div>
-                        </ul>
-                    }.bind(this))}
+                <div className="bannerT">
+                    <h3>banner图片</h3>
+                    <ul className="bannerB">
+                        <li>id</li>
+                        <li>img</li>
+                    </ul>
+                    {/*栏目完*/}
+                    {/*banner*/}
+                    <div id="bannerBWrap">
+                        {this.state.banner.map(function (v, i) {
+                            return <ul key={i} className="bannerB">
+                                <li>{v.id}</li>
+                                <li><img src={v.src}/></li>
+                                <li>
+                                    <button id="babyBanner">修改</button>
+                                </li>
+                                <div className="upBanner">
+                                    <input type="file" ref="filaa1" onChange={this.setimg.bind(null, this.refs.filaa1)}/>
+                                </div>
+                            </ul>
+                        }.bind(this))}
+                    </div>
                 </div>
                 {/*banner完*/}
             </div>

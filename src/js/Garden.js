@@ -297,11 +297,6 @@ componentDidMount() {
         var conB = $(".listIntroduce input:nth-of-type(6)").val();
         var conC = $(".listIntroduce input:nth-of-type(7)").val();
         var btn = $(".listIntroduce input:nth-of-type(8)").val();
-
-
-
-
-
         if (title == ""||enTitleA==""||enTitleB==""||conA==""||conB==""||conC==""||btn=="") {
             alert("不能为空")
         } else {
