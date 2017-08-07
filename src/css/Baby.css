@@ -2,6 +2,18 @@
     width: 100%;
     height: 400px;
 }
+.babyBanner{
+    width: 200px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+.babyBanner li{
+    font-size: 15px;
+}
+.upBanner{
+    display: none;
+}
 
 .modelWrap{
     width: 100%;
@@ -37,6 +49,9 @@
 }
 .parkWrap ul{
     width: 100%;
+}
+.parkWrap>ul:nth-of-type(1){
+    margin-top: 14px;
 }
 .parkWrap ul li{
     width: 200px;
@@ -87,16 +102,100 @@
     margin-left: 20px;
 }
 /*弹窗完*/
-.babyBanner{
+
+/*弹窗*/
+.listCourse2 input{
+    font-size: 15px;
+    margin: 10px;
+}
+.listCourse2{
     width: 200px;
+    height: 100px;
+    border: 1px solid black;
+    position: absolute;
+    top:800px;
+    right:30px;
+    display: none;
+    background-color: #fff;
+}
+.listCourse2 button{
+    margin-left: 20px;
+}
+/*弹窗完*/
+/*创造力*/
+.babyCreate{
+    width: 100%;
+    height: auto;
+}
+.babyCreate ul{
+    width: 100%;
+}
+.babyCreate>ul:nth-of-type(1){
+    margin-top: 14px;
+}
+.babyCreate ul li{
+    width: 200px;
+    display: inline-block;
     height: 30px;
     line-height: 30px;
     text-align: center;
+    margin-bottom: 10px;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    -o-text-overflow:ellipsis;
+    overflow: hidden;
 }
-.babyBanner li{
-    font-size: 15px;
-}
-.upBanner{
-    display: none;
-}
+/*创造力完*/
 
+/*照片墙*/
+.pictureDWrap{
+    width: 100%;
+}
+.pictureDWrap>li{
+    width:175px;
+    height:30px;
+    text-align: center;
+    line-height:30px;
+    font-size: 16px;
+    float: left;
+    margin-bottom: 20px;
+}
+.pictureD{
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+.pictureD li{
+    width:175px;
+    height:30px;
+    text-align: center;
+    line-height:30px;
+    font-size: 16px;
+    float: left;
+    margin-bottom: 20px;
+}
+.pictureD li button{
+    width: 60px;
+    display: inline-block;
+    height:30px;
+    outline: none;
+    font-size: 15px;
+    line-height:30px;
+}
+.pictureD li:nth-of-type(2) img{
+    width:30px;
+    height:30px;
+    border-radius: 50%;
+}
+.pictureDWrap{
+    width: 100%;
+    height: auto;
+}
+.updateBox1{
+    position: absolute;
+    right: 200px;
+    top:980px;
+    display: none;
+
+}
+/*照片墙完*/

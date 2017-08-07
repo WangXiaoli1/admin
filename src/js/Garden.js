@@ -179,7 +179,7 @@ componentDidMount() {
         });
     }.bind(this);
     //照片墙图片修改完
-    //照片墙图片修改
+    //介绍图片修改
     setimg2 = function (element) {
         console.log(element);
         var files = [];
@@ -214,7 +214,7 @@ componentDidMount() {
             }
         });
     }.bind(this);
-   //照片墙图片修改完
+   //介绍图片修改完
     picClick=function(event) {
         $(".updateBox1").css("display", "block");
         var dd = event.target;
