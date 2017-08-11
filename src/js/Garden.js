@@ -119,7 +119,9 @@ componentDidMount() {
         type:'get',
         success:function(a){
             console.log(a);
-            this.setState({introduce1:a});
+            this.setState({
+                introduce1:a
+            });
         }.bind(this)
     });
 
@@ -177,7 +179,7 @@ componentDidMount() {
                 alert("上传失败")
             }
         });
-    }.bind(this);
+    }.bind(this);222
     //照片墙图片修改完
     //介绍图片修改
     setimg2 = function (element) {
@@ -418,7 +420,7 @@ render() {
                     </ul>
                 }.bind(this))}
                 <div className="updateBox1">
-                    <input type="file" ref="filaa1" onChange={this.setimg1.bind(this, this.refs.filaa1)}/>
+                    <input type="file" ref="filaa1" onChange={this.setimg1.bind(null, this.refs.filaa1)}/>
                 </div>
 
             </div>

@@ -60,6 +60,15 @@ class Home extends Component {
                     url: "http://192.168.43.5:8005/banner/delBanner",
                     data: {"id": id},
                     success: function (e) {
+                        $.ajax({
+                            url: 'http://192.168.43.5:8005/banner/banner',
+                            type: 'get',
+                            success: function (b) {
+                                this.setState({
+                                    banner: b
+                                })
+                            }.bind(this)
+                        });
                         this.setState({
                             banner: e
                         })
@@ -71,9 +80,8 @@ class Home extends Component {
                 // 修改轮播图片
             } else if (target.innerHTML == "修改") {
                 var id = target.parentNode.parentNode.children[0].innerHTML;
-                // var src = target.parentNode.parentNode.children[1].innerHTML;
                 this.setState({
-                    aid: id
+                    aid: id,
                 });
                 $('.updateBox').css('display', 'block');
             }
@@ -92,6 +100,13 @@ class Home extends Component {
                     url: "http://localhost:8005/main/delMain_con",
                     data: {"id": id},
                     success: function (e) {
+                        $.ajax({
+                            url: 'http://192.168.43.5:8005/main',
+                            type: 'get',
+                            success: function (e) {
+                                this.setState({main_con1: e});
+                            }.bind(this)
+                        });
                         console.log(this);
                         this.setState({
                             main_con:e
@@ -197,6 +212,16 @@ class Home extends Component {
             contentType: false,
             processData: false,
             success: function (e) {
+
+                $.ajax({
+                    url: 'http://192.168.43.5:8005/banner/banner',
+                    type: 'get',
+                    success: function (b) {
+                        this.setState({
+                            banner: b
+                        })
+                    }.bind(this)
+                });
 
                 $.ajax({
                     type: "post",
@@ -452,6 +477,13 @@ class Home extends Component {
                     val2: val2
                 },
                 success: function (e) {
+                    $.ajax({
+                        url: 'http://192.168.43.5:8005/main',
+                        type: 'get',
+                        success: function (e) {
+                            this.setState({main_con1: e});
+                        }.bind(this)
+                    });
                     this.setState({
                         main_con: e
                     })
@@ -475,6 +507,7 @@ class Home extends Component {
     }.bind(this);
     ok(){
         var course = $(".specialCourse input:nth-of-type(1)").val();
+        console.log(course);
         var txt = $(".specialCourse input:nth-of-type(2)").val();
         var con = $(".specialCourse input:nth-of-type(3)").val();
         $(".specialCourse").css("display", "none");
@@ -491,6 +524,13 @@ class Home extends Component {
                     con:con
                 },
                 success: function (e) {
+                    $.ajax({
+                        url: 'http://192.168.43.5:8005/side_l',
+                        type: 'get',
+                        success: function (e) {
+                            this.setState({main_side_l1: e});
+                        }.bind(this)
+                    })
                     this.setState({
                         main_specia: e
                     })
@@ -531,6 +571,13 @@ class Home extends Component {
 
                 },
                 success: function (e) {
+                    $.ajax({
+                        url: 'http://192.168.43.5:8005/side_l',
+                        type: 'get',
+                        success: function (e) {
+                            this.setState({main_side_l1: e});
+                        }.bind(this)
+                    })
                     this.setState({
                         main_side_l: e
                     })
@@ -724,7 +771,7 @@ class Home extends Component {
                     <li>txt1</li>
                 </ul>
                 <div className="listC" id="listC">
-                    {this.state.main_con1.map(function(v,i){
+                    {this.state.main_con1.map((v,i)=>{
                         return <ul key={i} className="courseA">
                             <li>{v.id}</li>
                             <li>{v.txt}</li>
@@ -732,7 +779,7 @@ class Home extends Component {
                             <li><button onClick={this.rev.bind(this)}>修改</button></li>
                         </ul>
 
-                    }.bind(this))}
+                    })}
                     <div className="listCourse">
                         <input type="text" placeholder="txt"/>
                         <input type="text" placeholder="txt1"/>
@@ -769,17 +816,17 @@ class Home extends Component {
                                 <li>{v.con}</li>
                                 {/*<li><button>删除</button></li>*/}
                             </ul>
-                            <div className="specialCourse">
-                                <input type="text" placeholder="course"/>
-                                <input type="text" placeholder="txt"/>
-                                <input type="text" placeholder="con"/>
-                                <button id="ok" onClick={this.ok1.bind(this)}>确定</button>
-
-                            </div>
                         </div>
 
                     })
                     }
+                    <div className="specialCourse">
+                        <input type="text" placeholder="course"/>
+                        <input type="text" placeholder="txt"/>
+                        <input type="text" placeholder="con"/>
+                        <button id="ok" onClick={this.ok1.bind(this)}>确定</button>
+
+                    </div>
                 </div>
                 {/*特色课程  end*/}
                 {/*彩绘课程 start*/}

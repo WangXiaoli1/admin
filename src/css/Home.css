@@ -116,6 +116,7 @@
     width: 100%;
     height: 30px;
     padding-bottom: 10px;
+    display: inline-block;
 }
 .specialB ul li{
     width: 200px;
