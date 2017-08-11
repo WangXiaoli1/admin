@@ -417,7 +417,7 @@ render() {
                         <li><button onClick={this.picClick}>修改</button></li>
                     </ul>
                 }.bind(this))}
-                <div className="updateBox1">
+                <div className="updateBox1" id="updateBox1">
                     <input type="file" ref="filaa1" onChange={this.setimg1.bind(this, this.refs.filaa1)}/>
                 </div>
 

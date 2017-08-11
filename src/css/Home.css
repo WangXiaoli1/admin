@@ -115,12 +115,14 @@
 .specialB ul{
     width: 100%;
     height: 30px;
+    display: inline-block;
     padding-bottom: 10px;
 }
 .specialB ul li{
     width: 200px;
     height: 30px;
-    float: left;
+    display: inline-block;
+    /*float: left;*/
     text-align: center;
     white-space:nowrap;
     text-overflow:ellipsis;
