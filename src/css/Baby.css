@@ -66,22 +66,22 @@
     overflow: hidden;
 }
 /*弹窗*/
-.listCourse input{
-    font-size: 15px;
-    margin: 10px;
-}
-.listCourse{
-    width: 200px;
-    height: 100px;
-    border: 1px solid black;
-    position: absolute;
-    top:300px;
-    right: 0;
-    background-color: #fff;
-}
-.listCourse button{
-    margin-left: 20px;
-}
+/*.listCourse input{*/
+    /*font-size: 15px;*/
+    /*margin: 10px;*/
+/*}*/
+/*.listCourse{*/
+    /*width: 200px;*/
+    /*height: 100px;*/
+    /*border: 1px solid black;*/
+    /*position: absolute;*/
+    /*top:300px;*/
+    /*right: 0;*/
+    /*background-color: #fff;*/
+/*}*/
+/*.listCourse button{*/
+    /*margin-left: 20px;*/
+/*}*/
 /*弹窗完*/
 /*弹窗*/
 .listCourse1 input{
@@ -191,11 +191,11 @@
     width: 100%;
     height: auto;
 }
-.updateBox1{
-    position: absolute;
-    right: 200px;
-    top:980px;
-    display: none;
+/*.updateBox1{*/
+    /*position: absolute;*/
+    /*right: 200px;*/
+    /*top:980px;*/
+    /*display: none;*/
 
-}
+/*}*/
 /*照片墙完*/

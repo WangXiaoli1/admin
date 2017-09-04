@@ -80,7 +80,7 @@
 }
 .listCourse{
     width: 200px;
-    height: 200px;
+    height:130px;
     border: 1px solid black;
     position: absolute;
     left:75%;
@@ -129,11 +129,6 @@
     overflow: hidden;
     font-size: 16px;
 }
-/*.specialB ul:last-of-type li:nth-of-type(1):hover{*/
-    /*width: 540px;*/
-    /*height: auto;*/
-    /*float: left;*/
-/*}*/
 .specialCourse{
     width: 200px;
     height: 200px;
@@ -181,7 +176,7 @@
     height:200px;
     position:absolute;
     left: 75%;
-    top: 830px;
+    top:830px;
     border: 1px solid black;
     display: none;
 

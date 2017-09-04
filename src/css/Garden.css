@@ -100,19 +100,20 @@ h2{
     width: 600px;
 }
 /*弹窗*/
-.listCourse input{
+.listCourse_G input{
     font-size: 15px;
     margin: 10px;
 }
-.listCourse{
+.listCourse_G{
     width: 200px;
     height: 320px;
     border: 1px solid black;
     position: absolute;
     top: 0;
     right: 0;
+    display: none;
 }
-.listCourse button{
+.listCourse_G button{
     margin-left: 20px;
 }
 
@@ -181,7 +182,6 @@ h2{
     right: 200px;
     top:650px;
     display: none;
-
 }
 /*照片墙完*/
 
@@ -240,7 +240,7 @@ h2{
     border: 1px solid black;
     position: absolute;
     top: 0;
-    right: 0;
+    right:50px;
 }
 .listIntroduce button{
     margin-left: 20px;

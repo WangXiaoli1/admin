@@ -142,7 +142,7 @@ class Home extends Component {
             success: function (e) {
                 this.setState({main_special1: e});
             }.bind(this)
-        })
+        });
         //彩绘课程文字 调取
         $.ajax({
             url: 'http://192.168.43.5:8005/side_l',
@@ -212,17 +212,6 @@ class Home extends Component {
             contentType: false,
             processData: false,
             success: function (e) {
-
-                $.ajax({
-                    url: 'http://192.168.43.5:8005/banner/banner',
-                    type: 'get',
-                    success: function (b) {
-                        this.setState({
-                            banner: b
-                        })
-                    }.bind(this)
-                });
-
                 $.ajax({
                     type: "post",
                     url: "http://localhost:8005/banner/upBanner",
@@ -235,6 +224,16 @@ class Home extends Component {
                         console.log("修改失败")
                     }
                 });
+                $.ajax({
+                    url: 'http://192.168.43.5:8005/banner/banner',
+                    type: 'get',
+                    success: function (b) {
+                        this.setState({
+                            banner: b
+                        })
+                    }.bind(this)
+                });
+                $('.updateBox').css('display', 'none');
             }.bind(this),
             error: function () {
                 alert("上传失败")
@@ -300,6 +299,14 @@ class Home extends Component {
                     url: "http://localhost:8005/side_r/upSrc1",
                     data: {"id": this.state.rid},
                     success: function (e) {
+                        $.ajax({
+                            url: 'http://192.168.43.5:8005/side_r',
+                            type: 'get',
+                            success: function (e) {
+                                this.setState({main_side_r1: e});
+                            }.bind(this)
+                        });
+                        $('.src1').css('display','none');
                         alert(e)
 
                     }.bind(this),
@@ -335,6 +342,14 @@ class Home extends Component {
                     data: {"id": this.state.rid},
                     success: function (e) {
                         alert(e)
+                        $.ajax({
+                            url: 'http://192.168.43.5:8005/side_r',
+                            type: 'get',
+                            success: function (e) {
+                                this.setState({main_side_r1: e});
+                            }.bind(this)
+                        });
+                        $('.src2').css('display','none');
 
                     }.bind(this),
                     error: function () {
@@ -368,7 +383,15 @@ class Home extends Component {
                     url: "http://localhost:8005/side_r/upSrc4",
                     data: {"id": this.state.rid},
                     success: function (e) {
+                        $.ajax({
+                            url: 'http://192.168.43.5:8005/side_r',
+                            type: 'get',
+                            success: function (e) {
+                                this.setState({main_side_r1: e});
+                            }.bind(this)
+                        });
                         alert(e)
+                        $('.src4').css('display','none');
 
                     }.bind(this),
                     error: function () {
@@ -405,6 +428,14 @@ class Home extends Component {
                     data: {"id": this.state.schid},
                     success: function (e) {
                         alert(e)
+                        $.ajax({
+                            url: "http://192.168.43.5:8005/main_school/school",
+                            type: 'get',
+                            success: function (e) {
+                                this.setState({main_school1: e});
+                            }.bind(this)
+                        });
+                        $('.school_src1').css('display','none');
 
                     }.bind(this),
                     error: function () {
@@ -439,6 +470,14 @@ class Home extends Component {
                     data: {"id": this.state.schid},
                     success: function (e) {
                         alert(e)
+                        $.ajax({
+                            url: "http://192.168.43.5:8005/main_school/school",
+                            type: 'get',
+                            success: function (e) {
+                                this.setState({main_school1: e});
+                            }.bind(this)
+                        });
+                        $('.school_src2').css('display','none');
 
                     }.bind(this),
                     error: function () {
@@ -525,12 +564,12 @@ class Home extends Component {
                 },
                 success: function (e) {
                     $.ajax({
-                        url: 'http://192.168.43.5:8005/side_l',
+                        url: 'http://192.168.43.5:8005/special',
                         type: 'get',
                         success: function (e) {
-                            this.setState({main_side_l1: e});
+                            this.setState({main_special1: e});
                         }.bind(this)
-                    })
+                    });
                     this.setState({
                         main_specia: e
                     })
@@ -618,6 +657,13 @@ class Home extends Component {
 
                 },
                 success: function (e) {
+                    $.ajax({
+                        url: 'http://192.168.43.5:8005/side_r',
+                        type: 'get',
+                        success: function (e) {
+                            this.setState({main_side_r1: e});
+                        }.bind(this)
+                    });
                     this.setState({
                         main_side_r: e
                     })
@@ -824,7 +870,7 @@ class Home extends Component {
                         <input type="text" placeholder="course"/>
                         <input type="text" placeholder="txt"/>
                         <input type="text" placeholder="con"/>
-                        <button id="ok" onClick={this.ok1.bind(this)}>确定</button>
+                        <button id="ok" onClick={this.ok.bind(this)}>确定</button>
 
                     </div>
                 </div>
@@ -941,10 +987,7 @@ class Home extends Component {
                                     <button id="ok2" onClick={this.ok2.bind(this)}>确定</button>
                                 </div>
                             </div>
-
-
                         })
-
                         }
                     </div>
                 </div>

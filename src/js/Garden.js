@@ -167,7 +167,17 @@ componentDidMount() {
                     url: "http://192.168.43.5:8005/conB_picture/conb_picUp",
                     data: {"id": this.state.pid},
                     success: function (e) {
+                        $.ajax({
+                            url: 'http://192.168.43.5:8005/conB_picture/get',
+                            type: 'get',
+                            success: function (b) {
+                                this.setState({
+                                    picture: b
+                                })
+                            }.bind(this)
+                        });
                         alert(e)
+                        $(".updateBox1").css("display","none");
 
                     }.bind(this),
                     error: function () {
@@ -203,7 +213,17 @@ componentDidMount() {
                     url: "http://192.168.43.5:8005/conB_introduce/conB_introduceImgUp",
                     data: {"id": this.state.inid},
                     success: function (e) {
-                        alert(e)
+                        alert(e);
+                        $.ajax({
+                            url:'http://192.168.43.5:8005/conB_introduce',
+                            type:'get',
+                            success:function(a){
+                                console.log(a);
+                                this.setState({
+                                    introduce1:a
+                                });
+                            }.bind(this)
+                        });
 
                     }.bind(this),
                     error: function () {
@@ -231,7 +251,7 @@ componentDidMount() {
 //学校环境文字修改
 //     修改按钮
     conEnvir=function(event) {
-        $(".listCourse").css("display", "block");
+        $(".listCourse_G").css("display", "block");
         var aa = event.target;
         var id = aa.parentElement.parentElement.firstElementChild.innerHTML;
         this.setState({
@@ -240,13 +260,13 @@ componentDidMount() {
     }.bind(this);
     // 确定按钮    学校环境文字修改
     confirmfn(){
-    $(".listCourse").css("display", "none");
-    var title = $(".listCourse input:nth-of-type(1)").val();
-    var enTitle = $(".listCourse input:nth-of-type(2)").val();
-    var leftA = $(".listCourse input:nth-of-type(3)").val();
-    var leftB = $(".listCourse input:nth-of-type(4)").val();
-    var leftC = $(".listCourse input:nth-of-type(5)").val();
-    var rightA = $(".listCourse input:nth-of-type(6)").val();
+    $(".listCourse_G").css("display", "none");
+    var title = $(".listCourse_G input:nth-of-type(1)").val();
+    var enTitle = $(".listCourse_G input:nth-of-type(2)").val();
+    var leftA = $(".listCourse_G input:nth-of-type(3)").val();
+    var leftB = $(".listCourse_G input:nth-of-type(4)").val();
+    var leftC = $(".listCourse_G input:nth-of-type(5)").val();
+    var rightA = $(".listCourse_G input:nth-of-type(6)").val();
 
 
     if (title == "" || enTitle == ""||leftA==""||leftB==""||leftC==""||rightA=="") {
@@ -265,6 +285,14 @@ componentDidMount() {
             rightA: rightA
         },
         success: (e)=> {
+            $.ajax({
+                url:'http://192.168.43.5:8005/conBenvir',
+                type:'get',
+                success:function(e){
+                    console.log(e);
+                    this.setState({environment1:e});
+                }.bind(this)
+            });
             this.setState({
                 environment: e
             })
@@ -291,7 +319,7 @@ componentDidMount() {
     // 确定按钮    学校环境文字修改
     confirmfn1(){
         $(".listIntroduce").css("display", "none");
-        // var src = $(".listCourse input:nth-of-type(1)").val();
+        // var src = $(".listCourse_G input:nth-of-type(1)").val();
         var title = $(".listIntroduce input:nth-of-type(2)").val();
         var enTitleA = $(".listIntroduce input:nth-of-type(3)").val();
         var enTitleB = $(".listIntroduce input:nth-of-type(4)").val();
@@ -307,7 +335,6 @@ componentDidMount() {
                 url: "http://192.168.43.5:8005/conB_introduce/conB_introduce1",
                 data: {
                     id: this.state.inid,
-                    // src:src,
                     title: title,
                     enTitleA: enTitleA,
                     enTitleB: enTitleB,
@@ -318,6 +345,16 @@ componentDidMount() {
                 },
 
                 success: (e)=> {
+                    $.ajax({
+                        url:'http://192.168.43.5:8005/conB_introduce',
+                        type:'get',
+                        success:function(a){
+                            console.log(a);
+                            this.setState({
+                                introduce1:a
+                            });
+                        }.bind(this)
+                    });
                     this.setState({
                         introduce: e
                     })
@@ -391,7 +428,7 @@ render() {
                         <ul>
                             <li>{e.rightA}</li>
                         </ul>
-                        <div className="listCourse">
+                        <div className="listCourse_G">
                             <input type="text" placeholder="title"/>
                             <input type="text" placeholder="entitle"/>
                             <input type="text" placeholder="leftA"/>
