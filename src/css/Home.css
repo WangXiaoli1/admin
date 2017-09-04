@@ -78,18 +78,22 @@
     height: auto;
     overflow: hidden;
 }
-.listCourse{
+.listCourseA{
     width: 200px;
-    height:130px;
+    height:150px;
     border: 1px solid black;
     position: absolute;
     left:75%;
     top:250px;
     display: none;
 }
-.listCourse input{
+.listCourseA input{
     margin-left: 10px;
     margin-top: 20px;
+}
+.listCourseA button{
+    margin-left: 15px;
+    margin-top: 10px;
 }
 
 /*课程列表  end*/
@@ -115,13 +119,15 @@
 .specialB ul{
     width: 100%;
     height: 30px;
+    display: inline-block;
     padding-bottom: 10px;
     display: inline-block;
 }
 .specialB ul li{
     width: 200px;
     height: 30px;
-    float: left;
+    display: inline-block;
+    /*float: left;*/
     text-align: center;
     white-space:nowrap;
     text-overflow:ellipsis;

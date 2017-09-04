@@ -3,6 +3,7 @@
  */
 import React,{Component} from 'react';
 import $ from 'jquery';
+import config from './config'
 
 
 class Forword extends Component{

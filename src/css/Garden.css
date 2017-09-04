@@ -177,10 +177,10 @@ h2{
     width: 100%;
     height: auto;
 }
-.updateBox1{
+#updateBox1{
     position: absolute;
     right: 200px;
-    top:650px;
+    top:570px;
     display: none;
 }
 /*照片墙完*/
