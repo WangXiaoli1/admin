@@ -1,6 +1,7 @@
 
 import React,{Component} from 'react';
 import $ from 'jquery';
+import config from './config'
 
 class Garden extends Component{
 constructor() {
@@ -35,7 +36,7 @@ constructor() {
         console.log(fd);
         $.ajax({
             type: "post",
-            url: "http://192.168.43.5:8005/banner2/ban2img",
+            url: config.url+"/banner2/ban2img",
             async: true,
             data: fd,
             contentType: false,
@@ -45,7 +46,7 @@ constructor() {
 
                 $.ajax({
                     type: "post",
-                    url: "http://192.168.43.5:8005/banner2/upban2",
+                    url: config.url+"/banner2/upban2",
                     data: {"id": this.state.aid},
                     success: function (e) {
                         alert(e)
@@ -67,7 +68,7 @@ componentDidMount() {
     // banner
    //上传图片
     $.ajax({
-        url: 'http://192.168.43.5:8005/banner2/banner2',
+        url: config.url+'/banner2/banner2',
         type: 'get',
         success: function (b) {
             this.setState({
@@ -91,7 +92,7 @@ componentDidMount() {
 
     //学校环境文字调取
     $.ajax({
-        url:'http://192.168.43.5:8005/conBenvir',
+        url:config.url+'/conBenvir',
         type:'get',
         success:function(e){
             console.log(e);
@@ -103,7 +104,7 @@ componentDidMount() {
 
     // 照片墙图片获取
     $.ajax({
-        url: 'http://192.168.43.5:8005/conB_picture/get',
+        url: config.url+'/conB_picture/get',
         type: 'get',
         success: function (b) {
             this.setState({
@@ -115,11 +116,13 @@ componentDidMount() {
 
     // 介绍
     $.ajax({
-        url:'http://192.168.43.5:8005/conB_introduce',
+        url:config.url+'/conB_introduce',
         type:'get',
         success:function(a){
             console.log(a);
-            this.setState({introduce1:a});
+            this.setState({
+                introduce1:a
+            });
         }.bind(this)
     });
 
@@ -154,7 +157,7 @@ componentDidMount() {
         console.log(fd);
         $.ajax({
             type: "post",
-            url: "http://192.168.43.5:8005/conB_picture/conb_pic",
+            url: config.url+"/conB_picture/conb_pic",
             async: true,
             data: fd,
             contentType: false,
@@ -162,7 +165,7 @@ componentDidMount() {
             success: function (e) {
                 $.ajax({
                     type: "post",
-                    url: "http://192.168.43.5:8005/conB_picture/conb_picUp",
+                    url: config.url+"/conB_picture/conb_picUp",
                     data: {"id": this.state.pid},
                     success: function (e) {
                         alert(e)
@@ -177,7 +180,7 @@ componentDidMount() {
                 alert("上传失败")
             }
         });
-    }.bind(this);
+    }.bind(this);222
     //照片墙图片修改完
     //介绍图片修改
     setimg2 = function (element) {
@@ -190,7 +193,7 @@ componentDidMount() {
         console.log(fd);
         $.ajax({
             type: "post",
-            url: "http://192.168.43.5:8005/conB_introduce/conB_introduceImg",
+            url: config.url+"/conB_introduce/conB_introduceImg",
             async: true,
             data: fd,
             contentType: false,
@@ -198,7 +201,7 @@ componentDidMount() {
             success: function (e) {
                 $.ajax({
                     type: "post",
-                    url: "http://192.168.43.5:8005/conB_introduce/conB_introduceImgUp",
+                    url: config.url+"/conB_introduce/conB_introduceImgUp",
                     data: {"id": this.state.inid},
                     success: function (e) {
                         alert(e)
@@ -252,7 +255,7 @@ componentDidMount() {
 } else {
     $.ajax({
         type: "post",
-        url: "http://192.168.43.5:8005/conBenvir/conB_environ",
+        url: config.url+"/conBenvir/conB_environ",
         data: {
             id: this.state.uid,
             title: title,
@@ -302,7 +305,7 @@ componentDidMount() {
         } else {
             $.ajax({
                 type: "post",
-                url: "http://192.168.43.5:8005/conB_introduce/conB_introduce1",
+                url: config.url+"/conB_introduce/conB_introduce1",
                 data: {
                     id: this.state.inid,
                     // src:src,

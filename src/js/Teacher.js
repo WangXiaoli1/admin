@@ -1,6 +1,7 @@
 
 import React,{Component} from 'react';
 import $ from 'jquery';
+import config from './config'
 
 class Garden extends Component{
     constructor() {
@@ -21,7 +22,7 @@ class Garden extends Component{
         console.log(fd);
         $.ajax({
             type: "post",
-            url: "http://192.168.43.5:8005/banner5/ban5img",
+            url: config.url+"/banner5/ban5img",
             async: true,
             data: fd,
             contentType: false,
@@ -31,7 +32,7 @@ class Garden extends Component{
 
                 $.ajax({
                     type: "post",
-                    url: "http://192.168.43.5:8005/banner5/upban5",
+                    url: config.url+"/banner5/upban5",
                     data: {"id": this.state.aid},
                     success: function (e) {
                         alert(e)
@@ -51,7 +52,7 @@ class Garden extends Component{
     componentDidMount() {
         // banner图片修改 start
         $.ajax({
-            url: 'http://192.168.43.5:8005/banner5/banner5',
+            url: config.url+'/banner5/banner5',
             type: 'get',
             success: function (b) {
                 this.setState({

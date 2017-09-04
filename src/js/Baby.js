@@ -1,6 +1,7 @@
 
 import React,{Component} from 'react';
 import $ from 'jquery';
+import config from './config'
 
 class Garden extends Component {
     constructor() {
@@ -30,7 +31,7 @@ class Garden extends Component {
     componentDidMount() {
 
         $.ajax({
-            url: 'http://192.168.43.5:8005/banner4/banner4',
+            url: config.url+'/banner4/banner4',
             type: 'get',
             success: function (b) {
                 this.setState({
@@ -54,7 +55,7 @@ class Garden extends Component {
         var babyBanner = document.getElementById('babyBanner');
         // model文字调取开始
         $.ajax({
-            url: 'http://192.168.43.5:8005/model',
+            url: config.url+'/model',
             type: 'get',
             success: function (b) {
                 console.log(b);
@@ -64,7 +65,7 @@ class Garden extends Component {
         // model文字调取结束
         // {/*.亲子主题乐园文字开始*/}
         $.ajax({
-            url: 'http://192.168.43.5:8005/baby_park',
+            url: config.url+'/baby_park',
             type: 'get',
             success: function (b) {
                 console.log(b);
@@ -75,7 +76,7 @@ class Garden extends Component {
 
         // 创造力文字
         $.ajax({
-            url:'http://192.168.43.5:8005/baby_create',
+            url:config.url+'/baby_create',
             type:'get',
             success:function(b){
                 console.log(b);
@@ -87,7 +88,7 @@ class Garden extends Component {
         // 照片墙图片
         $.ajax({
             type: "get",
-            url: "http://192.168.43.5:8005/baby_img/baby_img",
+            url: config.url+"/baby_img/baby_img",
             success: function (e) {
                 console.log(e)
                 this.setState({create_img1:e});
@@ -110,7 +111,7 @@ class Garden extends Component {
         console.log(fd);
         $.ajax({
             type: "post",
-            url: "http://192.168.43.5:8005/banner4/ban4img",
+            url: config.url+"/banner4/ban4img",
             async: true,
             data: fd,
             contentType: false,
@@ -120,7 +121,7 @@ class Garden extends Component {
 
                 $.ajax({
                     type: "post",
-                    url: "http://192.168.43.5:8005/banner4/upban4",
+                    url: config.url+"/banner4/upban4",
                     data: {"id": this.state.aid},
                     success: function (e) {
                         alert(e)
@@ -149,7 +150,7 @@ class Garden extends Component {
         } else {
             $.ajax({
                 type: "post",
-                url: "http://192.168.43.5:8005/model/babyModel",
+                url: config.url+"/model/babyModel",
                 data: {
                     id: this.state.uid,
                     txt: txt,
@@ -187,7 +188,7 @@ class Garden extends Component {
         } else {
             $.ajax({
                 type: "post",
-                url: "http://192.168.43.5:8005/baby_park/parkModel",
+                url: config.url+"/baby_park/parkModel",
                 data: {
                     id: this.state.pid,
                     txt: txt,
@@ -223,7 +224,7 @@ class Garden extends Component {
         } else {
             $.ajax({
                 type: "post",
-                url: "http://192.168.43.5:8005/baby_create/baby_createTxt",
+                url: config.url+"/baby_create/baby_createTxt",
                 data: {
                     id: this.state.cid,
                     txt: txt,
@@ -254,7 +255,7 @@ class Garden extends Component {
         console.log(fd);
         $.ajax({
             type: "post",
-            url: "http://192.168.43.5:8005/conB_img/baby_createImg",
+            url: config.url+"/conB_img/baby_createImg",
             async: true,
             data: fd,
             contentType: false,
@@ -262,7 +263,7 @@ class Garden extends Component {
             success: function (e) {
                 $.ajax({
                     type: "post",
-                    url: "http://192.168.43.5:8005/conB_img/baby_createImgUp",
+                    url: config.url+"/conB_img/baby_createImgUp",
                     data: {"id": this.state.imgid},
                     success: function (e) {
                         alert(e)

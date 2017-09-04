@@ -1,6 +1,7 @@
 
 import React,{Component} from 'react';
 import $ from 'jquery';
+import config from './config'
 
 class Garden extends Component{
     constructor() {
@@ -45,7 +46,7 @@ class Garden extends Component{
         console.log(fd);
         $.ajax({
             type: "post",
-            url: "http://192.168.43.5:8005/banner3/ban3img",
+            url: config.url+"/banner3/ban3img",
             async: true,
             data: fd,
             contentType: false,
@@ -55,7 +56,7 @@ class Garden extends Component{
 
                 $.ajax({
                     type: "post",
-                    url: "http://192.168.43.5:8005/banner3/upban3",
+                    url: config.url+"/banner3/upban3",
                     data: {"id": this.state.aid},
                     success: function (e) {
                         alert(e)
@@ -75,7 +76,7 @@ class Garden extends Component{
     componentDidMount() {
         // banner
         $.ajax({
-            url: 'http://192.168.43.5:8005/banner3/banner3',
+            url: config.url+'/banner3/banner3',
             type: 'get',
             success: function (b) {
                 this.setState({
@@ -100,7 +101,7 @@ class Garden extends Component{
     //    banner end
     //    教育管理模式文字获取
         $.ajax({
-            url:'http://192.168.43.5:8005/edu_class',
+            url:config.url+'/edu_class',
             type:'get',
             success:function(a){
                 console.log(a);
@@ -109,7 +110,7 @@ class Garden extends Component{
         });
         // 班级介绍数据调取
         $.ajax({
-            url:'http://192.168.43.5:8005/edu_myClass',
+            url:config.url+'/edu_myClass',
             type:'get',
             success:function(a){
                 console.log(a);
@@ -119,7 +120,7 @@ class Garden extends Component{
         // 班级介绍数据调取完
        //  特色教学文字调取
         $.ajax({
-            url:'http://192.168.43.5:8005/edu_xhrGreenRight',
+            url:config.url+'/edu_xhrGreenRight',
             type:'get',
             success:function(a){
                 console.log(a);
@@ -128,7 +129,7 @@ class Garden extends Component{
         });
     //    小黄人图片调取
         $.ajax({
-            url:'http://192.168.43.5:8005/edu_xhrGreen',
+            url:config.url+'/edu_xhrGreen',
             type:'get',
             success:function(a){
                 console.log(a);
@@ -138,7 +139,7 @@ class Garden extends Component{
     //    照片墙左侧图片调取
         $.ajax({
             type: "get",
-            url: "http://192.168.43.5:8005/edu_pic/edu_pic",
+            url: config.url+"/edu_pic/edu_pic",
             success: function (e) {
                 this.setState({pictureCLeft1:e});
 
@@ -147,7 +148,7 @@ class Garden extends Component{
     //    照片墙右侧图片调取
         $.ajax({
             type: "get",
-            url: "http://192.168.43.5:8005/edu_pic1/edu_pic1",
+            url: config.url+"/edu_pic1/edu_pic1",
             success: function (e) {
                 this.setState({pictureCRight1:e});
 
@@ -172,7 +173,7 @@ class Garden extends Component{
         } else {
             $.ajax({
                 type: "post",
-                url: "http://192.168.43.5:8005/edu_class/upClass",
+                url: config.url+"/edu_class/upClass",
                 data: {
                     id: this.state.eid,
                     text:text
@@ -209,7 +210,7 @@ class Garden extends Component{
         } else {
             $.ajax({
                 type: "post",
-                url: "http://192.168.43.5:8005/edu_myclass/upMyclass",
+                url: config.url+"/edu_myclass/upMyclass",
                 data: {
                     id: this.state.mid,
                     title:title,
@@ -239,7 +240,7 @@ class Garden extends Component{
         console.log(fd);
         $.ajax({
             type: "post",
-            url: "http://localhost:8005/edu_myClass/eduimg",
+            url: config.url+"/edu_myClass/eduimg",
             async: true,
             data: fd,
             contentType: false,
@@ -247,7 +248,7 @@ class Garden extends Component{
             success: function (e) {
                 $.ajax({
                     type: "post",
-                    url: "http://localhost:8005/edu_myClass/eduSrc",
+                    url: config.url+"/edu_myClass/eduSrc",
                     data: {"id": this.state.mid},
                     success: function (e) {
                         alert(e)
@@ -281,7 +282,7 @@ class Garden extends Component{
         } else {
             $.ajax({
                 type: "post",
-                url: "http://192.168.43.5:8005/edu_xhrGreenRight/upSpecial",
+                url: config.url+"/edu_xhrGreenRight/upSpecial",
                 data: {
                     id: this.state.xid,
                     text:text
@@ -316,7 +317,7 @@ class Garden extends Component{
         console.log(fd);
         $.ajax({
             type: "post",
-            url: "http://localhost:8005/edu_xhrGreen/xhrImg",
+            url: config.url+"/edu_xhrGreen/xhrImg",
             async: true,
             data: fd,
             contentType: false,
@@ -324,7 +325,7 @@ class Garden extends Component{
             success: function (e) {
                 $.ajax({
                     type: "post",
-                    url: "http://localhost:8005/edu_xhrGreen/upXhr",
+                    url: config.url+"/edu_xhrGreen/upXhr",
                     data: {"id": this.state.xhrid},
                     success: function (e) {
                         alert(e)
@@ -360,7 +361,7 @@ class Garden extends Component{
         console.log(fd);
         $.ajax({
             type: "post",
-            url: "http://localhost:8005/edu_pic/pic_img",
+            url: config.url+"/edu_pic/pic_img",
             async: true,
             data: fd,
             contentType: false,
@@ -368,7 +369,7 @@ class Garden extends Component{
             success: function (e) {
                 $.ajax({
                     type: "post",
-                    url: "http://localhost:8005/edu_pic/eduPic",
+                    url: config.url+"/edu_pic/eduPic",
                     data: {"id": this.state.lid},
                     success: function (e) {
                         alert(e)
@@ -403,7 +404,7 @@ class Garden extends Component{
         console.log(fd);
         $.ajax({
             type: "post",
-            url: "http://localhost:8005/edu_pic1/picr_img",
+            url: config.url+"/edu_pic1/picr_img",
             async: true,
             data: fd,
             contentType: false,
@@ -411,7 +412,7 @@ class Garden extends Component{
             success: function (e) {
                 $.ajax({
                     type: "post",
-                    url: "http://localhost:8005/edu_pic1/eduRPic",
+                    url: config.url+"/edu_pic1/eduRPic",
                     data: {"id": this.state.rid},
                     success: function (e) {
                         alert(e)

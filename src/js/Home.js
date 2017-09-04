@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import $ from 'jquery';
+import config from './config'
 class Home extends Component {
     constructor() {
         super();
@@ -38,7 +39,7 @@ class Home extends Component {
 
         //上传图片
         $.ajax({
-            url: 'http://192.168.43.5:8005/banner/banner',
+            url: config.url+'/banner/banner',
             type: 'get',
             success: function (b) {
                 this.setState({
@@ -57,9 +58,18 @@ class Home extends Component {
                 var id = target.parentNode.parentNode.children[0].innerHTML;
                 $.ajax({
                     type: "post",
-                    url: "http://192.168.43.5:8005/banner/delBanner",
+                    url: config.url+"/banner/delBanner",
                     data: {"id": id},
                     success: function (e) {
+                        $.ajax({
+                            url: config.url+'/banner/banner',
+                            type: 'get',
+                            success: function (b) {
+                                this.setState({
+                                    banner: b
+                                })
+                            }.bind(this)
+                        });
                         this.setState({
                             banner: e
                         })
@@ -71,9 +81,8 @@ class Home extends Component {
                 // 修改轮播图片
             } else if (target.innerHTML == "修改") {
                 var id = target.parentNode.parentNode.children[0].innerHTML;
-                // var src = target.parentNode.parentNode.children[1].innerHTML;
                 this.setState({
-                    aid: id
+                    aid: id,
                 });
                 $('.updateBox').css('display', 'block');
             }
@@ -89,9 +98,16 @@ class Home extends Component {
                 var id = target.parentElement.parentElement.firstElementChild.innerHTML;
                 $.ajax({
                     type: "post",
-                    url: "http://localhost:8005/main/delMain_con",
+                    url: config.url+"/main/delMain_con",
                     data: {"id": id},
                     success: function (e) {
+                        $.ajax({
+                            url: 'http://192.168.43.5:8005/main',
+                            type: 'get',
+                            success: function (e) {
+                                this.setState({main_con1: e});
+                            }.bind(this)
+                        });
                         console.log(this);
                         this.setState({
                             main_con:e
@@ -104,7 +120,7 @@ class Home extends Component {
 
             }
             if(target.innerHTML=="修改"){
-                $('.listCourse').css('display', 'block');
+                $('.listCourseA').css('display', 'block');
                 var id = target.parentNode.parentNode.children[0].innerHTML;
                 this.setState({
                     id:id
@@ -114,7 +130,7 @@ class Home extends Component {
 
         //课程列表文字调取
         $.ajax({
-            url: 'http://192.168.43.5:8005/main',
+            url: config.url+'/main',
             type: 'get',
             success: function (e) {
                 this.setState({main_con1: e});
@@ -122,7 +138,7 @@ class Home extends Component {
         });
         //特色课程文字 调取
         $.ajax({
-            url: 'http://192.168.43.5:8005/special',
+            url: config.url+'/special',
             type: 'get',
             success: function (e) {
                 this.setState({main_special1: e});
@@ -130,7 +146,7 @@ class Home extends Component {
         })
         //彩绘课程文字 调取
         $.ajax({
-            url: 'http://192.168.43.5:8005/side_l',
+            url: config.url+'/side_l',
             type: 'get',
             success: function (e) {
                 this.setState({main_side_l1: e});
@@ -138,7 +154,7 @@ class Home extends Component {
         })
         //    品格教育文字 调取
         $.ajax({
-            url: 'http://192.168.43.5:8005/side_r',
+            url: config.url+'/side_r',
             type: 'get',
             success: function (e) {
                 this.setState({main_side_r1: e});
@@ -146,7 +162,7 @@ class Home extends Component {
         });
     //    学校环境文字调取
         $.ajax({
-            url: "http://192.168.43.5:8005/main_school/school",
+            url: config.url+"/main_school/school",
             type: 'get',
             success: function (e) {
                 this.setState({main_school1: e});
@@ -166,7 +182,7 @@ class Home extends Component {
         $.ajax({
 
             type:"post",
-            url:"http://192.168.43.5:8005/banner/banner",
+            url:config.url+"/banner/banner",
             async:true,
             data:fd,
             contentType:false,
@@ -191,7 +207,7 @@ class Home extends Component {
         console.log(fd);
         $.ajax({
             type: "post",
-            url: "http://localhost:8005/banner/banimg",
+            url: config.url+"/banner/banimg",
             async: true,
             data: fd,
             contentType: false,
@@ -199,8 +215,18 @@ class Home extends Component {
             success: function (e) {
 
                 $.ajax({
+                    url: config.url+'/banner/banner',
+                    type: 'get',
+                    success: function (b) {
+                        this.setState({
+                            banner: b
+                        })
+                    }.bind(this)
+                });
+
+                $.ajax({
                     type: "post",
-                    url: "http://localhost:8005/banner/upBanner",
+                    url: config.url+"/banner/upBanner",
                     data: {"id": this.state.aid},
                     success: function (e) {
                         alert(e)
@@ -228,7 +254,7 @@ class Home extends Component {
         console.log(fd);
         $.ajax({
             type: "post",
-            url: "http://localhost:8005/side_l/side_l_img",
+            url: config.url+"/side_l/side_l_img",
             async: true,
             data: fd,
             contentType: false,
@@ -236,7 +262,7 @@ class Home extends Component {
             success: function (e) {
                 $.ajax({
                     type: "post",
-                    url: "http://localhost:8005/side_l/upMain_side_l",
+                    url: config.url+"/side_l/upMain_side_l",
                     data: {"id": this.state.lid},
                     success: function (e) {
                         alert(e)
@@ -264,7 +290,7 @@ class Home extends Component {
         console.log(fd);
         $.ajax({
             type: "post",
-            url: "http://localhost:8005/side_r/side_r_img",
+            url: config.url+"/side_r/side_r_img",
             async: true,
             data: fd,
             contentType: false,
@@ -272,7 +298,7 @@ class Home extends Component {
             success: function (e) {
                 $.ajax({
                     type: "post",
-                    url: "http://localhost:8005/side_r/upSrc1",
+                    url: config.url+"/side_r/upSrc1",
                     data: {"id": this.state.rid},
                     success: function (e) {
                         alert(e)
@@ -298,7 +324,7 @@ class Home extends Component {
         console.log(fd);
         $.ajax({
             type: "post",
-            url: "http://localhost:8005/side_r/side_r_img",
+            url: config.url+"/side_r/side_r_img",
             async: true,
             data: fd,
             contentType: false,
@@ -306,7 +332,7 @@ class Home extends Component {
             success: function (e) {
                 $.ajax({
                     type: "post",
-                    url: "http://localhost:8005/side_r/upSrc2",
+                    url: config.url+"/side_r/upSrc2",
                     data: {"id": this.state.rid},
                     success: function (e) {
                         alert(e)
@@ -332,7 +358,7 @@ class Home extends Component {
         console.log(fd);
         $.ajax({
             type: "post",
-            url: "http://localhost:8005/side_r/side_r_img",
+            url: config.url+"/side_r/side_r_img",
             async: true,
             data: fd,
             contentType: false,
@@ -340,7 +366,7 @@ class Home extends Component {
             success: function (e) {
                 $.ajax({
                     type: "post",
-                    url: "http://localhost:8005/side_r/upSrc4",
+                    url: config.url+"/side_r/upSrc4",
                     data: {"id": this.state.rid},
                     success: function (e) {
                         alert(e)
@@ -368,7 +394,7 @@ class Home extends Component {
         console.log(fd);
         $.ajax({
             type: "post",
-            url: "http://localhost:8005/main_school/main_school_img",
+            url: config.url+"/main_school/main_school_img",
             async: true,
             data: fd,
             contentType: false,
@@ -376,7 +402,7 @@ class Home extends Component {
             success: function (e) {
                 $.ajax({
                     type: "post",
-                    url: "http://localhost:8005/main_school/upSchool1",
+                    url: config.url+"/main_school/upSchool1",
                     data: {"id": this.state.schid},
                     success: function (e) {
                         alert(e)
@@ -402,7 +428,7 @@ class Home extends Component {
         console.log(fd);
         $.ajax({
             type: "post",
-            url: "http://localhost:8005/main_school/main_school_img",
+            url: config.url+"/main_school/main_school_img",
             async: true,
             data: fd,
             contentType: false,
@@ -410,7 +436,7 @@ class Home extends Component {
             success: function (e) {
                 $.ajax({
                     type: "post",
-                    url: "http://localhost:8005/main_school/upSchool2",
+                    url: config.url+"/main_school/upSchool2",
                     data: {"id": this.state.schid},
                     success: function (e) {
                         alert(e)
@@ -429,7 +455,7 @@ class Home extends Component {
 
     //课程列表文字修改
     rev(event) {
-        $(".listCourse").css("display", "block");
+        $(".listCourseA").css("display", "block");
         var aa = event.target;
         var id = aa.parentElement.parentElement.firstElementChild.innerHTML;
         this.setState({
@@ -437,21 +463,28 @@ class Home extends Component {
         })
     };
     confirmfn() {
-        var val1 = $(".listCourse input:nth-of-type(1)").val();
-        var val2 = $(".listCourse input:nth-of-type(2)").val();
-        $(".listCourse").css("display", "none");
+        var val1 = $(".listCourseA input:nth-of-type(1)").val();
+        var val2 = $(".listCourseA input:nth-of-type(2)").val();
+        $(".listCourseA").css("display", "none");
         if (val1 == "" || val2 == "") {
             alert("不能为空")
         } else {
             $.ajax({
                 type: "post",
-                url: "http://192.168.43.5:8005/main/upMain_con",
+                url: config.url+"/main/upMain_con",
                 data: {
                     id: this.state.uid,
                     val1: val1,
                     val2: val2
                 },
                 success: function (e) {
+                    $.ajax({
+                        url: config.url+'/main',
+                        type: 'get',
+                        success: function (e) {
+                            this.setState({main_con1: e});
+                        }.bind(this)
+                    });
                     this.setState({
                         main_con: e
                     })
@@ -475,6 +508,7 @@ class Home extends Component {
     }.bind(this);
     ok(){
         var course = $(".specialCourse input:nth-of-type(1)").val();
+        console.log(course);
         var txt = $(".specialCourse input:nth-of-type(2)").val();
         var con = $(".specialCourse input:nth-of-type(3)").val();
         $(".specialCourse").css("display", "none");
@@ -483,7 +517,7 @@ class Home extends Component {
         } else {
             $.ajax({
                 type: "post",
-                url: "http://192.168.43.5:8005/special/upMain_special",
+                url: config.url+"/special/upMain_special",
                 data: {
                     id:this.state.sid,
                     course:course,
@@ -491,6 +525,13 @@ class Home extends Component {
                     con:con
                 },
                 success: function (e) {
+                    $.ajax({
+                        url: config.url+'/side_l',
+                        type: 'get',
+                        success: function (e) {
+                            this.setState({main_side_l1: e});
+                        }.bind(this)
+                    })
                     this.setState({
                         main_specia: e
                     })
@@ -522,7 +563,7 @@ class Home extends Component {
         } else {
             $.ajax({
                 type: "post",
-                url: "http://192.168.43.5:8005/side_l/upMain_side_l",
+                url: config.url+"/side_l/upMain_side_l",
                 data: {
                     id: this.state.lid,
                     valA:valA,
@@ -531,6 +572,13 @@ class Home extends Component {
 
                 },
                 success: function (e) {
+                    $.ajax({
+                        url: config.url+'/side_l',
+                        type: 'get',
+                        success: function (e) {
+                            this.setState({main_side_l1: e});
+                        }.bind(this)
+                    })
                     this.setState({
                         main_side_l: e
                     })
@@ -562,7 +610,7 @@ class Home extends Component {
         } else {
             $.ajax({
                 type: "post",
-                url: "http://192.168.43.5:8005/side_r/upMain_side_r",
+                url: config.url+"/side_r/upMain_side_r",
                 data: {
                     id: this.state.rid,
                     course:course,
@@ -637,7 +685,7 @@ class Home extends Component {
         } else {
             $.ajax({
                 type: "post",
-                url: "http://192.168.43.5:8005/school/upSchool",
+                url: config.url+"/school/upSchool",
                 data: {
                     id: this.state.schid,
                     title:title,
@@ -724,7 +772,7 @@ class Home extends Component {
                     <li>txt1</li>
                 </ul>
                 <div className="listC" id="listC">
-                    {this.state.main_con1.map(function(v,i){
+                    {this.state.main_con1.map((v,i)=>{
                         return <ul key={i} className="courseA">
                             <li>{v.id}</li>
                             <li>{v.txt}</li>
@@ -732,10 +780,10 @@ class Home extends Component {
                             <li><button onClick={this.rev.bind(this)}>修改</button></li>
                         </ul>
 
-                    }.bind(this))}
-                    <div className="listCourse">
+                    })}
+                    <div className="listCourseA">
                         <input type="text" placeholder="txt"/>
-                        <input type="text" placeholder="txt1"/>
+                        <input type="text" placeholder="txt1"/><br/>
                         <button id="confirm" onClick={this.confirmfn.bind(this)}>确定</button>
                     </div>
                 </div>
@@ -769,17 +817,17 @@ class Home extends Component {
                                 <li>{v.con}</li>
                                 {/*<li><button>删除</button></li>*/}
                             </ul>
-                            <div className="specialCourse">
-                                <input type="text" placeholder="course"/>
-                                <input type="text" placeholder="txt"/>
-                                <input type="text" placeholder="con"/>
-                                <button id="ok" onClick={this.ok1.bind(this)}>确定</button>
-
-                            </div>
                         </div>
 
                     })
                     }
+                    <div className="specialCourse">
+                        <input type="text" placeholder="course"/>
+                        <input type="text" placeholder="txt"/>
+                        <input type="text" placeholder="con"/>
+                        <button id="ok" onClick={this.ok1.bind(this)}>确定</button>
+
+                    </div>
                 </div>
                 {/*特色课程  end*/}
                 {/*彩绘课程 start*/}
